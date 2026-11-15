@@ -1,0 +1,182 @@
+/* Colours, spacing and fonts used across the whole site */
+:root {
+  --bg: #FAF8F4;
+  --paper: #FFFFFF;
+  --text: #1F2933;
+  --muted: #4A5560;
+  --line: #D9D4CA;
+  --accent: #1D5C63;
+  --space-s: 8px;
+  --space-m: 24px;
+  --space-l: 48px;
+  --edge: 24px;
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "Inter", Arial, sans-serif;
+}
+
+/* Page defaults for plain elements: body, headings, paragraphs, links */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: 88px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 var(--space-s);
+}
+h1 { font-size: clamp(2.25rem, 6vw, 3.25rem); }
+h2 { font-size: 1.75rem; margin-bottom: var(--space-m); }
+h3 { font-size: 1.25rem; }
+p, li { max-width: 68ch; }
+p { margin: 0 0 calc(var(--space-s) * 2); }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--text); }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* Shared page width and side spacing (header bar and main content) */
+.wrap {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding-left: var(--edge);
+  padding-right: var(--edge);
+}
+main { padding-bottom: var(--space-l); }
+main > section { padding-top: var(--space-l); }
+
+/* Navigation bar: flexbox, stays at the top while scrolling */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.nav { display: flex; align-items: center; gap: var(--space-m); min-height: 64px; }
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: var(--space-s); margin: 0 0 0 auto; padding: 0; list-style: none; }
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-link:hover { color: var(--accent); }
+
+/* Buttons and text links: filled, outlined, and plain link with a 44px tap target */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-m);
+  background: var(--accent);
+  color: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.button:hover { background: var(--text); border-color: var(--text); color: var(--paper); }
+.button-outline { background: transparent; color: var(--accent); }
+.button-outline:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+.text-link { display: inline-flex; align-items: center; min-height: 44px; }
+a, .button { transition: color 0.15s, background-color 0.15s, border-color 0.15s; }
+
+/* Hero section (#hero): name, one sentence, and the main call to action */
+#hero { padding-top: 64px; }
+.lead {
+  max-width: 36rem;
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  line-height: 1.4;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s) var(--space-m);
+  margin-top: var(--space-m);
+}
+
+/* Cards (flat, thin full outline) for experience and education */
+.card { border: 1px solid var(--line); border-radius: 8px; padding: var(--space-m); }
+.card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-m); }
+.card p:last-child { margin-bottom: 0; }
+.meta { color: var(--muted); }
+
+/* Student quote inside the experience card (separated by space only) */
+blockquote { margin: var(--space-m) 0 0; }
+blockquote p { font-family: var(--serif); font-size: 1.125rem; margin-bottom: var(--space-s); }
+.quote-source { color: var(--muted); font-size: 0.95rem; }
+
+/* Resume section: download link above, then the white paper sheet (#resume) */
+.sheet {
+  max-width: 100%;
+  padding: var(--space-l);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+.resume-name { font-size: 1.75rem; }
+.resume-contact { color: var(--muted); }
+.resume-role { font-weight: 600; }
+#resume h4 {
+  margin: var(--space-m) 0 var(--space-s);
+  padding-bottom: var(--space-s);
+  border-bottom: 1px solid var(--line);
+  font-size: 1rem;
+}
+#resume p { margin-bottom: var(--space-s); }
+#resume ul { margin: 0; padding-left: 1.25rem; }
+#resume li { margin-bottom: var(--space-s); }
+
+/* Screens narrower than 700px: smaller edges, wrapped nav, single column */
+@media (max-width: 699px) {
+  :root { --edge: 16px; }
+  .nav { flex-wrap: wrap; gap: 0 var(--space-s); }
+  .nav-brand { flex: 1; }
+  .nav-links { order: 3; flex-wrap: wrap; width: 100%; margin: 0; gap: 0; }
+  .nav-link { padding: 0 var(--space-s); }
+  #hero { padding-top: var(--space-m); }
+  .actions .button { width: 100%; }
+  .card-grid { grid-template-columns: 1fr; }
+  .sheet { padding: var(--space-m); }
+}
+
+/* Turn off colour transitions for people who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  a, .button { transition: none; }
+}
+
+/* Print: show only the resume, black on white, on one A4 page */
+@page { size: A4; margin: 14mm; }
+@media print {
+  header, #hero, #experience, #education, #contact,
+  #resume-area > h2, #resume-area > .download { display: none; }
+  body { background: #fff; color: #000; font-size: 10.5pt; line-height: 1.4; }
+  .wrap { max-width: none; padding-left: 0; padding-right: 0; }
+  main { padding-bottom: 0; }
+  #resume-area { padding: 0; }
+  #resume { padding: 0; border: 0; background: #fff; font-size: 10.5pt; }
+  #resume, #resume a { color: #000; text-decoration: none; }
+  #resume h4 { margin-top: 12pt; border-bottom: 1px solid #000; }
+  #resume li { margin-bottom: 2pt; }
+}
